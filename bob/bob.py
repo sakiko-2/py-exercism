@@ -1,5 +1,3 @@
-import re
-
 def response(hey_bob):
     message = hey_bob.strip()
     is_question = message.endswith('?')
