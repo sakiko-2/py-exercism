@@ -3,6 +3,7 @@
 Python list documentation: https://docs.python.org/3/tutorial/datastructures.html
 """
 
+from statistics import median
 
 def get_rounds(number):
     """Create a list containing the current and next two round numbers.
@@ -10,8 +11,15 @@ def get_rounds(number):
     :param number: int - current round number.
     :return: list - current round and the two that follow.
     """
+    
+    i = 0
+    result = []
 
-    pass
+    while i < 3:
+        result += [number + i]
+        i += 1
+
+    return result
 
 
 def concatenate_rounds(rounds_1, rounds_2):
@@ -22,7 +30,7 @@ def concatenate_rounds(rounds_1, rounds_2):
     :return: list - all rounds played.
     """
 
-    pass
+    return rounds_1 + rounds_2
 
 
 def list_contains_round(rounds, number):
@@ -33,7 +41,7 @@ def list_contains_round(rounds, number):
     :return: bool - was the round played?
     """
 
-    pass
+    return rounds.count(number) > 0
 
 
 def card_average(hand):
@@ -43,7 +51,7 @@ def card_average(hand):
     :return: float - average value of the cards in the hand.
     """
 
-    pass
+    return sum(hand) / len(hand)
 
 
 def approx_average_is_average(hand):
@@ -53,7 +61,8 @@ def approx_average_is_average(hand):
     :return: bool - does one of the approximate averages equal the `true average`?
     """
 
-    pass
+    avg_first_last = (hand[0] + hand[-1]) / 2
+    return card_average(hand) == avg_first_last or card_average(hand) == median(hand)
 
 
 def average_even_is_average_odd(hand):
@@ -63,7 +72,7 @@ def average_even_is_average_odd(hand):
     :return: bool - are even and odd averages equal?
     """
 
-    pass
+    return card_average(hand[::2]) == card_average(hand[1::2])
 
 
 def maybe_double_last(hand):
@@ -73,4 +82,8 @@ def maybe_double_last(hand):
     :return: list - hand with Jacks (if present) value doubled.
     """
 
-    pass
+    if hand[-1] == 11:
+        hand[-1] = 11 * 2
+    
+    return hand
+    
