@@ -1,2 +1,4 @@
+import re
+
 def abbreviate(words):
-    pass
+    return "".join(re.findall(r"\b\w", re.sub(r"[^A-Z\s-]", "", words.upper())))
