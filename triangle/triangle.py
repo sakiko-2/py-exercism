@@ -1,17 +1,15 @@
 def equilateral(sides):
-    a, b, c = sides
-    return triangle(sides) and a == b and b == c and a == c
+    return triangle(sides) and len(set(sides)) == 1
 
 
 def isosceles(sides):
-    a, b, c = sides
-    return triangle(sides) and (a == b or b == c or a == c)
+    return triangle(sides) and len(set(sides)) <= 2
 
 
 def scalene(sides):
-    return triangle(sides) and not equilateral(sides) and not isosceles(sides)
+    return triangle(sides) and len(set(sides)) == 3
 
 
 def triangle(sides):
     a, b, c = sides
-    return all(sides) and not (a + b < c or b + c < a or a + c < b)
+    return all(sides) and a + b >= c and b + c >= a and a + c >= b
